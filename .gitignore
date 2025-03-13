@@ -1,0 +1,83 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log
+.pnpm-debug.log*
+.vscode/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Build output
+dist/
+build/
+out/
+.next/
+.vercel/
+.netlify/
+
+# Logs
+logs/
+*.log
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+debug.log*
+*.gz
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor & IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.sublime-project
+*.sublime-workspace
+
+# Tailwind CSS generated files
+*.css.map
+
+# Babel cache
+.cache/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Jest & Testing
+coverage/
+*.snap
+
+# MongoDB
+/data/db/
+dump/
+
+# ESLint & Prettier
+.eslintcache
+.prettierignore
+
+# Storybook
+storybook-static/
+
+# Other build tools
+.parcel-cache/
+.nyc_output/
+
+# Optional: Firebase
+.firebase/
+.firebaserc
+
+# Optional: Docker
+docker-compose.override.yml
+
+# Optional: Local development settings
+npm-debug.log
+*.local
+
