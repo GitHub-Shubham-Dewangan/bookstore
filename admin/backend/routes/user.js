@@ -1,4 +1,4 @@
-const router = required("express").Router();
+const router = require("express").Router();
 const User = require("../models/user");
 
 //sign-up
@@ -13,13 +13,13 @@ router.post("/sign-up", async (req, res) => {
         }
 
         //check if username already exists
-        const existingUsername = await User.find({ username: username });
+        const existingUsername = await User.findOne({ username: username });
         if (existingUsername){
             return res.status(400).json({ message: "Username already exists"});
         }
 
         //check if email already exists
-        const existingEmail = await User.find({ email: email });
+        const existingEmail = await User.findOne({ email: email });
         if (existingEmail){
             return res.status(400).json({ message: "Email already exists"});
         }
