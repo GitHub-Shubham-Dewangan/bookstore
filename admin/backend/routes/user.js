@@ -13,8 +13,6 @@ router.post("/sign-up", async (req, res) => {
         }
 
         //check if username already exists
-<<<<<<< HEAD
-=======
         const existingUsername = await User.find({ username: username });
         if (existingUsername){
             return res.status(400).json({ message: "Username already exists"});
@@ -39,7 +37,6 @@ router.post("/sign-up", async (req, res) => {
         });
             await newUser.save();
             return res.status(200).json({ message: "SignUp Successfully"});
->>>>>>> shubham
 
     } catch (error) {
         res.status(500).json({message: "Internal server error"});
