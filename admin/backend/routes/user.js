@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 
 //sign-up
@@ -59,7 +60,12 @@ router.post("/sign-in", async (req, res) => {
         
         await bcrypt.compare(password,existingUser.password, (err,data) => {
             if (data){
-                res.status(200).json({ message: "SignIn sucess"});
+                const authClaims = [
+                    { name: exitstingUser.username},
+                    {role: existingUser.role},
+                ]
+                const token = jwt.sign({authClaims},"bookStore123",{expiresIn: "30d",});
+                res.status(200).json({ id: existingUser._id, role: existingUser.role,token:token,});
             } else {
                 res.status(400).json({ message: "Invalid Credentials"});
             }
