@@ -28,7 +28,7 @@ router.post("/sign-up", async (req, res) => {
         }
 
         //check password length.
-        if ( password.length <=5 ){
+        if ( password.length <= 5 ){
             return res.status(400).json({ message : "Password's length should be greater than 5"});
         }
 
@@ -55,14 +55,14 @@ router.post("/sign-in", async (req, res) => {
 
         const existingUser = await User.findOne({ username});
         if (!existingUser){
-            res.status(400).json({ message: "Invalid credentials"});
+            return res.status(400).json({ message: "Invalid credentials"});
         }
         
         await bcrypt.compare(password,existingUser.password, (err,data) => {
             if (data){
                 const authClaims = [
-                    { name: exitstingUser.username},
-                    {role: existingUser.role},
+                    { name: existingUser.username },
+                    { role: existingUser.role },
                 ]
                 const token = jwt.sign({authClaims},"bookStore123",{expiresIn: "30d",});
                 res.status(200).json({ id: existingUser._id, role: existingUser.role,token:token,});
