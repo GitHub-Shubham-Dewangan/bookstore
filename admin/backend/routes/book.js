@@ -29,4 +29,38 @@ router.post("/add-book", authenticateToken, async(req, res) => {
     }
 
 });
+
+//update book
+router.put("/update-book", authenticateToken, async (req, res) => {
+    try {
+        const { bookid } = req.headers;
+        await Book.findByIdAndUpdate(bookid, {
+            url : req.body.url,
+            title: req.body.title,
+            author: req.body.author,
+            price: req.body.price,
+            desc : req.body.desc,
+            language: req.body.language,
+        });
+
+        return res.status(200).json({
+            message: "Book Updated sucessfully!"
+        });
+
+    } catch (error) {
+        return res.status(500).json({ message : "An error occurred" });
+    }
+});
+
+//delete book --admin
+router.delete("/delete-book", authenticateToken, async (req, res) => {
+    try {
+        const { bookid } = req.headers;
+        await Book.findByIdAndDelete(bookid);
+        return res.status(200).json({ message :"Book deleted Sucessfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "An error occurred" });
+    }
+});
+
 module.exports = router;
