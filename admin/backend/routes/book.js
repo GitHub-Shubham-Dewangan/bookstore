@@ -78,4 +78,34 @@ router.get("/get-all-books",async (req, res) => {
     }
 });
 
+//get recently added books limit 4
+router.get("/get-recent-books", async(req,res) => {
+    try {
+        const books = await Book.find().sort({ createdAt : -1 }).limit(4);
+        return res.json({
+            status: "Success",
+            data: books,
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "An error occurred" });
+    }
+});
+
+//get book by id
+router.get("/get-book-by-id/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const book = await Book.findById(id);
+        return res.json({
+            status: "Success",
+            data: book,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message : "An error occurred" });
+    }
+});
+
 module.exports = router;
