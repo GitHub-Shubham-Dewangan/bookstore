@@ -34,13 +34,16 @@ const Navbar = () => {
         />
         <h1 className="text-2xl font-semibold">Kitaab Ghar</h1>
     </div>
-    <div className="nav-links-bookheaven">
+    <div className="nav-links-bookheaven flex items-center gap-4">
         <div className="flex gap-4">
         {links.map((items, i) => (
             <div className="hover:text-blue-500 transition-all duration-300" key={i}>{items.title}</div>
         ))}
         </div>
-        <div></div>
+        <div className="flex gap-4">
+            <button className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transtition-all duration-300">LogIn</button>
+            <button className="px-4 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transtition-all duration-300">SignUp</button>
+        </div>
     </div>
     </div>
     );
