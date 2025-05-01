@@ -6,7 +6,6 @@ const { authenticateToken } = require("./userAuth");
 
 
 //sign-up
-
 router.post("/sign-up", async (req, res) => {
     try {
         const {username,email,password,address} = req.body;
