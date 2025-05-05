@@ -44,7 +44,7 @@ router.put("/update-book", authenticateToken, async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Book Updated sucessfully!",
+      message: "Book Updated successfully!",
     });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred" });
@@ -56,7 +56,7 @@ router.delete("/delete-book", authenticateToken, async (req, res) => {
   try {
     const { bookid } = req.headers;
     await Book.findByIdAndDelete(bookid);
-    return res.status(200).json({ message: "Book deleted Sucessfully" });
+    return res.status(200).json({ message: "Book deleted Successfully" });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred" });
   }
