@@ -7,7 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FaEdit } from "react-icons/fa";
-import {MdOutlineDelete} from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
@@ -22,8 +22,31 @@ const ViewBookDetails = () => {
       setData(response.data.data);
     };
     fetch();
-  }, [id]);
-  if (!Data) return <Loader />;
+  }, []);
+
+  const headers = {
+    id: localStorage.getItem("id"),
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    bookid: id,
+  };
+  const handleFavorite = async () => {
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/add-book-to-favourite",
+      {},
+      { headers },
+    );
+    alert(response.data.message);
+  };
+
+  const handleCart = async () => {
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/add-to-cart",
+      {},
+      { headers },
+    );
+    alert(response.data.message);
+  };
+
   return (
     <>
       {Data && (
@@ -39,18 +62,23 @@ const ViewBookDetails = () => {
               />
               {isLoggedIn === true && role === "user" && (
                 <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0">
-                  <button className="bg-white rounded lg:rounded-full text-4xl lg:text-3xl p-3 text-red-500 flex items-center justify-center">
+                  <button
+                    className="bg-white rounded lg:rounded-full text-4xl lg:text-3xl p-3 text-red-500 flex items-center justify-center"
+                    onClick={handleFavorite}
+                  >
                     <FaHeart />{" "}
                     <span className="ms-4 block lg:hidden">Favourites</span>
                   </button>
 
-                  <button className="text-white rounded mt-8 md:mt-0 lg:rounded-full text-4xl lg:text-3xl p-3 lg:mt-8 bg-blue-500 flex items-center justify-center">
+                  <button
+                    className="text-white rounded mt-8 md:mt-0 lg:rounded-full text-4xl lg:text-3xl p-3 lg:mt-8 bg-blue-500 flex items-center justify-center"
+                    onClick={handleCart}
+                  >
                     <FaShoppingCart />{" "}
                     <span className="ms-4 block lg:hidden">Add to Cart</span>
                   </button>
                 </div>
               )}
-
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between lg:justify-start mt-8 lg:mt-0">
                   <button className="bg-white rounded lg:rounded-full text-4xl lg:text-3xl p-3 flex items-center justify-center">
@@ -64,7 +92,6 @@ const ViewBookDetails = () => {
                   </button>
                 </div>
               )}
-
             </div>
           </div>
           <div className="p-4 w-full lg:w-3/6">
