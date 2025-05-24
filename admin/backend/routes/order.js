@@ -7,7 +7,7 @@ const User = require("../models/user");
 //place order
 router.post("/place-order", authenticateToken, async (req, res) => {
   try {
-    const { id } = req.header;
+    const { id } = req.headers;
     const { order } = req.body;
     for (const orderData of order) {
       const newOrder = new Order({ user: id, book: orderData._id });
