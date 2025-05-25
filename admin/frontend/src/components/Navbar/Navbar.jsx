@@ -25,11 +25,24 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
   if (isLoggedIn === false) {
     links.splice(3, 3);
+  }
+
+  if (isLoggedIn == true && role === "user") {
+    links.splice(5, 1);
+  }
+
+  if (isLoggedIn == true && role === "admin") {
+    links.splice(4, 1);
   }
 
   const [MobileNav, setMobileNav] = useState("hidden");
@@ -44,7 +57,8 @@ const Navbar = () => {
           <div className="hidden md:flex gap-4">
             {links.map((items, i) => (
               <div className="flex items-center">
-                {items.title === "profile" ? (
+                {items.title === "Profile" ||
+                items.title === "Admin Profile" ? (
                   <Link
                     to={items.link}
                     className="hover:text-blue-500 border border-blue-500 transition-all duration-300"
