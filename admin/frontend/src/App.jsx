@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import AllBooks from "./pages/AllBooks";
+import UpdateBook from "./pages/UpdateBook";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import AddBook from "./pages/AddBook";
@@ -52,6 +53,7 @@ const App = () => {
         </Route>
         <Route exact path="/SignUp" element={<SignUp />} />
         <Route exact path="/LogIn" element={<LogIn />} />
+        <Route exact path="/UpdateBook/:id" element={<UpdateBook />} />
         <Route path="view-book-details/:id" element={<ViewBookDetails />} />
       </Routes>
       <Footer />
