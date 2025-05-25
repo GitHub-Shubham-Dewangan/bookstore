@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import AllBooks from "./pages/AllBooks";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import AddBook from "./pages/AddBooks";
+import AddBook from "./pages/AddBook";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import ViewBookDetails from "./components/ViewBookDetails/ViewBookDetails";
