@@ -4,7 +4,7 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 
 const Sidebar = ({ data }) => {
   return (
-    <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between h-full">
+    <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between h-auto lg:h-full">
       <div className="flex items-center flex-col justify-center">
         <img
           src={data.avatar}

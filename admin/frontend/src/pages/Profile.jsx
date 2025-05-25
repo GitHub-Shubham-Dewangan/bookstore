@@ -32,7 +32,7 @@ const Profile = () => {
       )}
       {profile && (
         <>
-          <div className="w-full md:w-1/6 h-screen">
+          <div className="w-full md:w-1/6 h-auto lg:h-screen">
             <Sidebar data={profile} />
           </div>
           <div className="w-full md:w-5/6">
@@ -42,26 +42,6 @@ const Profile = () => {
       )}
     </div>
   );
-
-  //old code
-  //   if (!profile) {
-  //     return (
-  //       <div className="h-screen w-full flex items-center justify-center bg-zinc-900 text-white">
-  //         <Loader />
-  //       </div>
-  //     );
-  //   }
-
-  //   return (
-  //     <div className="bg-zinc-900 px-2 md:px-12 flex flex-row h-screen gap-4 text-white">
-  //       <div className="w-full md:w-1/6 h-full">
-  //         <Sidebar data={profile} />
-  //       </div>
-  //       <div className="w-full md:w-5/6 h-full overflow-y-auto">
-  //         <Outlet />
-  //       </div>
-  //     </div>
-  //   );
 };
 
 export default Profile;

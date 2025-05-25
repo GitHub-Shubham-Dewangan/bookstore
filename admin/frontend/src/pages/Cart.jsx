@@ -18,7 +18,7 @@ const Cart = () => {
     const fetch = async () => {
       const res = await axios.get(
         "http://localhost:3000/api/v1/get-user-cart",
-        { headers }
+        { headers },
       );
       setCart(res.data.data);
     };
@@ -30,7 +30,7 @@ const Cart = () => {
       const response = await axios.put(
         `http://localhost:3000/api/v1/remove-from-cart/${bookid}`,
         {},
-        { headers }
+        { headers },
       );
       alert(response.data.message);
       setCart((prev) => prev.filter((item) => item._id !== bookid)); // Update UI instantly
@@ -40,7 +40,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    if (Cart && Cart.length > 0){
+    if (Cart && Cart.length > 0) {
       let total = 0;
       Cart.map((items) => {
         total += items.price;
@@ -48,7 +48,7 @@ const Cart = () => {
       setTotal(total);
       total = 0;
     }
-  },[Cart]);
+  }, [Cart]);
 
   //Place Order API
   const PlaceOrder = async () => {
@@ -56,11 +56,11 @@ const Cart = () => {
       const response = await axios.post(
         `http://localhost:3000/api/v1/place-order`,
         { order: Cart },
-        { headers }
+        { headers },
       );
       alert(response.data.message);
       navigate("/profile/orderHistory");
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -138,11 +138,13 @@ const Cart = () => {
               Total Amount
             </h1>
             <div className="mt-3 flex items-center justify-between text-xl text-zinc-200">
-              <h2>{Cart.length} books</h2><h2>₹ {Total}</h2>
+              <h2>{Cart.length} books</h2>
+              <h2>₹ {Total}</h2>
             </div>
             <div className="w-[100%] mt-3">
-              <button className="bg-zinc-100 rounded px-4 py-2 flex justify-center w-full font-semibold hover:scale-110 cursor-pointer"
-              onClick={PlaceOrder}
+              <button
+                className="bg-zinc-100 rounded px-4 py-2 flex justify-center w-full font-semibold hover:scale-110 cursor-pointer"
+                onClick={PlaceOrder}
               >
                 Place Order
               </button>
