@@ -17,6 +17,7 @@ import Favourites from "./components/Profile/Favourites";
 import UserOrderHistory from "./components/Profile/UserOrderHistory";
 import Settings from "./components/Profile/Settings";
 import AllOrders from "./pages/AllOrders";
+import AboutUs from "./pages/AboutUs";  // <-- Import AboutUs page
 
 const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const App = () => {
         <Route exact path="/LogIn" element={<LogIn />} />
         <Route exact path="/UpdateBook/:id" element={<UpdateBook />} />
         <Route path="view-book-details/:id" element={<ViewBookDetails />} />
+        <Route exact path="/about-us" element={<AboutUs />} />
       </Routes>
       <Footer />
     </div>

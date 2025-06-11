@@ -18,7 +18,7 @@ const UpdateBook = () => {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
     bookid: id,
-  }; 
+  };
   const change = (e) => {
     const { name, value } = e.target;
     setData({ ...Data, [name]: value });
@@ -37,9 +37,10 @@ const UpdateBook = () => {
         alert("All fields are required");
       } else {
         const response = await axios.put(
-            "http://localhost:3000/api/v1/update-book ", 
-            Data,
-            { headers });
+          "http://localhost:3000/api/v1/update-book ",
+          Data,
+          { headers },
+        );
 
         setData({
           url: "",
@@ -54,14 +55,13 @@ const UpdateBook = () => {
       }
     } catch (error) {
       alert(error.response.data.message);
-      
     }
   };
 
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/get-book-by-id/${id}`
+        `http://localhost:3000/api/v1/get-book-by-id/${id}`,
       );
       setData(response.data.data);
     };
